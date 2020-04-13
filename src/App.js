@@ -4,6 +4,7 @@ import './App.css'
 import Home from './components/Home'
 import Routes from './components/Routes'
 import Stops from './components/Stops'
+import NoMatch from './components/NoMatch'
 
 function App() {
   return (
@@ -16,6 +17,10 @@ function App() {
         <Route exact path='/' component={Home} />
         <Route exact path='/routes/:routeId' component={Routes} />
         <Route exact path='/routes/:routeId/:direction' component={Stops} />
+
+        <Route path='*'>
+          <NoMatch />
+        </Route>
       </Switch>
     </div>
   )
