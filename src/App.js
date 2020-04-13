@@ -18,9 +18,7 @@ function App() {
         <Route exact path='/routes/:routeId' component={Routes} />
         <Route exact path='/routes/:routeId/:direction' component={Stops} />
 
-        <Route path='*'>
-          <NoMatch />
-        </Route>
+        <Route path='*' component={NoMatch} />
       </Switch>
     </div>
   )
