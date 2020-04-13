@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { getStops } from '../API'
+import ErrorMessage from './ErrorMessage'
 
 export default function Stops({ match }) {
   const [stops, setStops] = useState([])
@@ -22,12 +23,7 @@ export default function Stops({ match }) {
   if (!loaded && !error) {
     return <span data-testid='loading'>Loading stops...</span>
   } else if (loaded && error) {
-    return (
-      <span data-testid='error'>
-        There's something wrong!
-        {console.log(error)}
-      </span>
-    )
+    return <ErrorMessage error={error} />
   } else if (loaded && !error) {
     return (
       <div data-testid='resolved'>

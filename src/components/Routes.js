@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { getRouteDirections } from '../API'
+import ErrorMessage from './ErrorMessage'
 
 export default function Routes({ match }) {
   const [routeDirections, setRouteDirections] = useState([])
@@ -12,8 +13,11 @@ export default function Routes({ match }) {
   useEffect(() => {
     getRouteDirections(match.params.routeId)
       .then((res) => {
-        setRouteDirections(res.data)
+        console.log(res)
         setLoaded(true)
+        !res.data.length
+          ? setError({ msg: "Sorry, looks like that's not a route" })
+          : setRouteDirections(res.data)
       })
       .catch((err) => {
         setLoaded(true)
@@ -29,12 +33,7 @@ export default function Routes({ match }) {
   if (!loaded && !error) {
     return <span data-testid='loading'>Loading directions...</span>
   } else if (loaded && error) {
-    return (
-      <span data-testid='error'>
-        There's something wrong!
-        {console.log(error)}
-      </span>
-    )
+    return <ErrorMessage error={error} />
   } else if (loaded && !error) {
     return (
       <div>

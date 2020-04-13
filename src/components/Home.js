@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { getRoutes } from '../API'
+import ErrorMessage from './ErrorMessage'
 
 export default function Home() {
   const [busRoutes, setBusRoutes] = useState([])
@@ -29,15 +30,7 @@ export default function Home() {
   if (!loaded && !error) {
     return <p data-testid='loading'>Loading bus routes...</p>
   } else if (loaded && error) {
-    return (
-      <div data-testid='error'>
-        <h1>Home</h1>
-        <p>
-          There's something wrong!
-          {console.log(error)}
-        </p>
-      </div>
-    )
+    return <ErrorMessage error={error} />
   } else if (loaded && !error) {
     return (
       <div data-testid='resolved'>
