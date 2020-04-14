@@ -33,8 +33,8 @@ export default function Home() {
     return <ErrorMessage error={error} />
   } else if (loaded && !error) {
     return (
-      <div data-testid='resolved'>
-        <h1>Home</h1>
+      <div>
+        <h1 data-testid='home-resolved'>Home</h1>
         <p>Please select your route</p>
         <div>
           <label htmlFor='routes'>
