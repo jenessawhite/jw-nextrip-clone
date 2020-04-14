@@ -37,10 +37,10 @@ export default function Routes({ match }) {
   } else if (loaded && !error) {
     return (
       <div>
-        <span data-testid='resolved'>
+        <h1 data-testid='routes-resolved'>
           Your selected route:{` `}
           {match.params.routeId}
-        </span>
+        </h1>
 
         <div>
           <label htmlFor='routes'>
